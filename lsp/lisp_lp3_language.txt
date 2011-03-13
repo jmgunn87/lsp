@@ -1,0 +1,91 @@
+LP3 extensions
+-----------------------------
+lp3ifdef (arg)
+lp3endif
+lp3invoke (filename, arguments.....)***inserts another templates contents when called***
+lp3terminate ***stop pre-processsing***
+
+
+
+Definition : lisp_symtbl.h
+----------------------------
+ - variable
+ - function
+ - forget
+ 
+Assignment : lisp_symtbl.h
+----------------------------
+ - set
+ 
+Iteration : lisp_cntrl.c
+------------------------
+ - while
+ - each
+ 
+Branching : lisp_cntrl.c
+------------------------
+ - if
+ 
+Logic : lisp_cmp.c
+------------------------
+ - <,>,<=,>=,=,!=
+ - and
+ - or
+ - not
+ - is
+ 
+Math : lisp_math.c
+------------------------
+ - *,\,%,+,-
+ 
+Access : lisp_access.c
+-------------------------
+ - at (at op int*)
+     | takes any str,list or array as a first arg and returns the element at the specified index.
+     | this works with multiple dimensions if the operand is an multi-dimensional array
+ 
+ - from (from op int*)
+     | takes any str,list or array as a first arg and returns the rest of the operand from
+     | a given point to the end.
+     
+ - to (to op int*)
+     | takes any str,list or array as a first arg and returns the rest of the operand from
+     | the start up to the specified index.
+     
+ - between (between op [(int*)(int*)|int int])
+     | returns a subsequence
+     
+ - index (index op atom)
+     | 
+     
+ 
+Modification
+- remove
+- replace
+- swap
+- reverse
+- copy
+- delete
+ 
+Conversions : lisp_conv.c
+ - as
+ - of
+ - length
+ - size
+ 
+Formatting : lisp_format.c
+---------------------------
+ - format
+ 
+IO : lisp_io.c
+---------------
+ - write
+ - read
+ - open
+ - close
+ 
+Utility : lisp_utils.c
+-----------------------
+ - sleep
+ 
+ 

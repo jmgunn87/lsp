@@ -1,0 +1,62 @@
+~(function gen-links-standard()
+  (while((i 0)(< i(length links))(set i (+ i 2)))
+    (write(format "  <li id='~A'><a href='~A'>~A</a></li>~%" 
+                  (at links i)
+                  (at links(+ i 1))
+                  (at links i)))))~                  
+~(function gen-links-ajax()
+  (while((i 0)(< i(length links))(set i (+ i 2)))
+    (write(format "  <li id='~A'><a href='#'>~A</a></li>~%" (at links i) (at links i)))))~
+~(function gen-links()
+  (if(and link-behaviour(= link-behaviour "ajax"))
+   (gen-links-ajax)
+   (gen-links-standard)))~
+~(function gen-keywords()
+  ((write(format"  <meta name='keywords' content='~A" (at keywords 0)))
+   (while((i 1)(< i(length keywords))(set i (+ i 1)))
+    (write "," (at keywords i)))
+   (write "'/>")))~
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html ~(if(language)(write(format "lang='~A' xml:lang='~A'" language language)))~ ~(if(text-direction)(write(format "dir='~A'" text-direction)))~>
+ <head>
+~(if(title)(write(format "  <title>~A</title>" title))0)~
+~(if(description)(write(format "  <meta name='description' content='~A'/>" description))0)~
+~(if(author)(write(format "  <meta name='author' content='~A'/>" author))0)~
+~(if(keywords)(gen-keywords)0)~
+~(if(charset)(write(format "  <meta http-equiv='content-type' content='text/html;charset=~A'/>" charset))0)~
+~($if jquery)~
+  <script type="text/javascript"
+   src=~(if(jquery-src)(write "'"jquery-src"'"))~></script>
+  <script type="text/javascript"
+   src=~(if(jquery-ui-src)(write "'"jquery-ui-src"'"))~></script>
+  <script type="text/javascript">
+  $(document).ready(function()
+  {
+~(if(and link-behaviour(= link-behaviour "ajax"))
+   (while((i 0)(< i(length links))(set i (+ i 2)))
+     (write(format "    $('#~A').click(function(){ $.get('~A',0,function(data){ $('#content').html(data); },'html');});~%" 
+            (at links i) (at links (+ i 1)))))0)~
+  });
+  </script>
+~($endif)~
+ </head>
+ <body>
+  <div>
+   <h1>~(if(title)(write title)(write "Untitled"))~</h1>
+  </div>
+  <div>
+   <ul>
+~(gen-links)~
+   </ul>
+  </div>
+  <div id='content'>
+   <h3><b><u>content</u></b></h3>
+  </div>
+~($if footer)~
+  <div id='footer'>
+   <u>footer</u>
+  </div>
+~($endif)~  
+ </body>
+</html>

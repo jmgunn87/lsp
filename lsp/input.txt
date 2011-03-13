@@ -1,0 +1,55 @@
+{
+ "name":"Vaporette.co.uk",
+ "type":"dir",
+ "inherit":"none",
+ "elements":
+ [
+  {"name":"resources","type":"dir"},
+  {"name":"styles","type":"dir"},
+  {"name":"images","type":"dir"},
+  {"name":"php","type":"dir"},
+  {"name":"jscript","type":"dir"},
+  {"name":"index.html",
+   "type":"file",
+   "inherit":"parent",
+   "template":"../template.txt",
+   "variables":
+    {
+      "text-direction":"ltr",
+      "language":"ja",
+      "title":"Vaporette.co.uk",
+      "author":"James Marshall-Gunn",
+      "description":"An amazing site dedicated to burnings",
+      "keywords":["smoking","vapourisers","tobacco","nrt"],
+      "charset":"utf-8",
+      "links":["home","index.html",
+               "about","about.html",
+               "products","products.html",
+               "contact us","contact.html"],
+      "jquery":true,
+      "jquery-src":"http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js",
+      "jquery-ui-src":"http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js",      
+      "link-behaviour":"ajax",
+      "footer":true
+    }
+  },
+  {
+   "name":"about.html",
+   "type":"file",
+   "inherit":"sibling",
+   "template":"../template.txt"
+  },
+  {
+   "name":"contact.html",
+   "type":"file",
+   "inherit":"sibling",
+   "template":"../template.txt"
+  },
+  {
+   "name":"products.html",
+   "type":"file",
+   "inherit":"sibling",
+   "template":"../template.txt"
+  }
+ ] 
+}
